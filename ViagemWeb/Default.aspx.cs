@@ -20,7 +20,8 @@ namespace ViagemWeb
             //if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
             //{
             //    // Use the Anti-XSRF token from the cookie
-                
+            //    CarregarListaViagem();
+            //    CarregaResultados();
             //}
             CarregarListaViagem();
             CarregaResultados();
@@ -39,28 +40,34 @@ namespace ViagemWeb
 
         protected void CarregaResultados()
         {
-
             //var esperado = SvcVendaCliente.PesquisaViagem(id);
             var todasViagens = SvcViagem.ListarTodasViagens();
             foreach (var item in todasViagens)
             {
                 var esperado = SvcViagem.BuscarViagem(item.ViagemId);
                 var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo.Value).Lugares;
-                soma = esperado.Valor * assento;
-                txbValorTotal.Text = Convert.ToString(soma);
+                if (soma == null)
+                {
+                    soma = esperado.Valor * assento;
+                }
+                else
+                {
+                    soma = soma + (esperado.Valor * assento);
+                }
                 var vendas = SvcVendaCliente.PesquisaViagem(item.ViagemId);
                 foreach (var item1 in vendas)
                 {
                     total = total + item1.VendaValorPago;
                 }
-                txbValorPago.Text = total.ToString();
+
                 var despesa = SvcContaPagarReceber.PesquisaDespesaViagem(item.ViagemId);
                 foreach (var item2 in despesa)
                 {
                     totalDespesas = totalDespesas + item2.Valor;
                 }
             }
-
+            txbValorPago.Text = total.ToString();
+            txbValorTotal.Text = Convert.ToString(soma);
             txbValorDespesa.Text = totalDespesas.ToString();
             txbValorLucro.Text = (total - totalDespesas).ToString();
             ChartLucro.Value = (total - totalDespesas).ToString();
