@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ViagemWeb.SiteMaster" %>
-
+<%@ Register Src="~/Form/WebUserControl1.ascx" TagPrefix="sis" TagName="WebUserControl1" %>
+<%@ Register Src="~/Form/Porcentagem.ascx" TagPrefix="sis" TagName="Porcentagem" %>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,7 +14,10 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <script src="~/Scripts/highcharts/5.0.14/highcharts.js"></script>
+    <script src="~/Scripts/highcharts/5.0.14/highcharts-more.js"></script>
+    <script src="~/Scripts/highcharts/5.0.14/modules/solid-gauge.js"></script>
+    <link href="~/Content/css/select2.css" rel="stylesheet" />
 </head>
 <body>
     <form runat="server">
@@ -48,10 +52,60 @@
                     <a class="navbar-brand" runat="server" href="~/">Application name</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
+                     <ul class="nav navbar-nav">
+                        <%--<li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>--%>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listas <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/ListaCliente">Cliente</a></li>
+                                <li><a runat="server" href="~/ListaViagem">Viagem</a></li>
+                                <li><a runat="server" href="~/ListaVeiculo">Veiculo</a></li>
+                                <li><a runat="server" href="~/ListaVendaViagem">Venda Viagem</a></li>
+                                <li><a runat="server" href="~/ListaFornecedor">Fornecedor</a></li>
+                                <li><a runat="server" href="~/ListaFretamento">Fretamento</a></li>
+                                <li><a runat="server" href="~/ListaServico">Serviço</a></li>
+                                <li><a runat="server" href="~/ListaContaPagarReceber">Lista Contas</a></li>
+                                <%--<li><a href="#">teste</a></li>
+                                <li><a href="#">teste</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">teste</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">teste</a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/CadastroCliente">Cliente</a></li>
+                                <li><a runat="server" href="~/CadastroViagem">Viagem</a></li>
+                                <li><a runat="server" href="~/CadastroVeiculo">Veiculo</a></li>
+                                <li><a runat="server" href="~/CadastroFornecedor">Fornecedor</a></li>
+                                <li><a runat="server" href="~/PrestacaoServico">Serviço</a></li>
+                                <%--<li><a href="#">teste</a></li>
+                                <li><a href="#">teste</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">teste</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">teste</a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Venda <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/VendaViagem">Venda Viagem</a></li>
+                                <li><a runat="server" href="~/VendaFretamento">Fretamento</a></li>
+                                <li><a runat="server" href="~/ContaPagarReceber">Contas Pagar e Receber</a></li>
+                                <%--<li><a href="#">teste</a></li>
+                                <li><a href="#">teste</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">teste</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">teste</a></li>--%>
+                            </ul>
+                            </li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -83,3 +137,85 @@
     </form>
 </body>
 </html>
+<script type="text/javascript">
+    function pageLoad() {
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    }
+
+    $("#Quant").popover({
+        placement: 'bottom',
+        html: 'true',
+        title: '<span class="text-info"><strong>Quantidade</strong></span>' +
+            '<button type="button" id="close" class="close" onclick="$(&quot;#Quant&quot;).popover(&quot;hide&quot;);">&times;</button>',
+        content: '<div class="texto" align="right">Adultos:<a class="btn" id="AdultoMenos" href="#">-</a><label id="displayAdulto">0</label><a class="btn" id="AdultoMais" href="#">+</a></div>' +
+            '<div class="texto" align="right">Jovens:<a class="btn" id="AdolecenteMenos" href="#">-</a><label id="displayAdolecente">0</label><a class="btn" id="AdolecenteMais" href="#">+</a></div>' +
+            '<div class="texto" align="right">Crianças:<a class="btn" id="CriancaMenos" href="#">-</a><label id="displayCrianca">0</label><a class="btn" id="CriancaMais" href="#">+</a></div>' +
+            '<div class="texto" align="right">Bebês:<a class="btn" id="BebeMenos" href="#">-</a><label id="displayBebe">0</label><a class="btn" id="BebeMais" href="#">+</a></div>'
+    });
+
+    $(document).on("click", "#Quant", function () {
+        if (i != 0) { document.getElementById("displayAdulto").innerHTML = i; }
+        if (r != 0) { document.getElementById("displayAdolecente").innerHTML = r; }
+        if (h != 0) { document.getElementById("displayCrianca").innerHTML = h; }
+        if (s != 0) { document.getElementById("displayBebe").innerHTML = s; }
+    });
+
+    var quant = 0;
+    var i = 0;
+    $(document).on("click", "#AdultoMais", function () {
+        if (i < 20) { i++; quant++; } else if (i = i++) { quant = quant - i; i = 0; }
+        document.getElementById("displayAdulto").innerHTML = i;
+        document.getElementById("quantidadeAdulto").value = i;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+    $(document).on("click", "#AdultoMenos", function () {
+        if (i > 0) { --i; --quant; }
+        document.getElementById("displayAdulto").innerHTML = i;
+        document.getElementById("quantidadeAdulto").value = i;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+
+    var r = 0;
+    $(document).on("click", "#AdolecenteMais", function () {
+        if (r < 20) { r++; quant++; } else if (r = r++) { quant = quant - r; r = 0; }
+        document.getElementById("displayAdolecente").innerHTML = r;
+        document.getElementById("quantidadeAdolecente").value = r;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+    $(document).on("click", "#AdolecenteMenos", function () {
+        if (r > 0) { --r; --quant; }
+        document.getElementById("displayAdolecente").innerHTML = r;
+        document.getElementById("quantidadeAdolecente").value = r;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+
+    var h = 0;
+    $(document).on("click", "#CriancaMais", function () {
+        if (h < 20) { h++; quant++; } else if (h = h++) { quant = quant - h; h = 0; }
+        document.getElementById("displayCrianca").innerHTML = h;
+        document.getElementById("quantidadeCrianca").value = h;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+    $(document).on("click", "#CriancaMenos", function () {
+        if (h > 0) { --h; --quant; }
+        document.getElementById("displayCrianca").innerHTML = h;
+        document.getElementById("quantidadeCrianca").value = h;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+
+    var s = 0;
+    $(document).on("click", "#BebeMais", function () {
+        if (s < 20) { s++; quant++; } else if (s = s++) { quant = quant - s; s = 0; }
+        document.getElementById("displayBebe").innerHTML = s;
+        document.getElementById("quantidadeBebe").value = s;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+    $(document).on("click", "#BebeMenos", function () {
+        if (s > 0) { --s; --quant; }
+        document.getElementById("displayBebe").innerHTML = s;
+        document.getElementById("quantidadeBebe").value = s;
+        document.getElementById("Quant").setAttribute('value', quant);
+    });
+</script>
