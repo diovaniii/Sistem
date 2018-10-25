@@ -10,20 +10,20 @@ namespace ViagemWeb
 {
     public partial class _Default : Page
     {
-        private string _antiXsrfTokenValue;
-        private const string AntiXsrfTokenKey = "__AntiXsrfToken";
-        private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
+        //private string _antiXsrfTokenValue;
+        //private const string AntiXsrfTokenKey = "__AntiXsrfToken";
+        //private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         protected void Page_Load(object sender, EventArgs e)
         {
-            var requestCookie = Request.Cookies[AntiXsrfTokenKey];
-            Guid requestCookieGuidValue;
-            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
-            {
-                // Use the Anti-XSRF token from the cookie
-                CarregarListaViagem();
-                CarregaResultados();
-            }
-
+            //var requestCookie = Request.Cookies[AntiXsrfTokenKey];
+            //Guid requestCookieGuidValue;
+            //if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+            //{
+            //    // Use the Anti-XSRF token from the cookie
+                
+            //}
+            CarregarListaViagem();
+            CarregaResultados();
         }
 
         private void CarregarListaViagem()
@@ -35,7 +35,7 @@ namespace ViagemWeb
 
         decimal? soma;
         decimal total;
-        decimal? totalDespesas;
+        decimal totalDespesas;
 
         protected void CarregaResultados()
         {
@@ -46,28 +46,21 @@ namespace ViagemWeb
             {
                 var esperado = SvcViagem.BuscarViagem(item.ViagemId);
                 var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo.Value).Lugares;
-                if (soma == null)
-                {
-                    soma = esperado.Valor * assento;
-                }
-                else
-                {
-                    soma = soma + (esperado.Valor * assento);
-                }
+                soma = esperado.Valor * assento;
+                txbValorTotal.Text = Convert.ToString(soma);
                 var vendas = SvcVendaCliente.PesquisaViagem(item.ViagemId);
                 foreach (var item1 in vendas)
                 {
                     total = total + item1.VendaValorPago;
                 }
-
+                txbValorPago.Text = total.ToString();
                 var despesa = SvcContaPagarReceber.PesquisaDespesaViagem(item.ViagemId);
                 foreach (var item2 in despesa)
                 {
                     totalDespesas = totalDespesas + item2.Valor;
                 }
             }
-            txbValorPago.Text = total.ToString();
-            txbValorTotal.Text = Convert.ToString(soma);
+
             txbValorDespesa.Text = totalDespesas.ToString();
             txbValorLucro.Text = (total - totalDespesas).ToString();
             ChartLucro.Value = (total - totalDespesas).ToString();

@@ -203,11 +203,9 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Form\Grafico.ascx" />
     <Content Include="Form\Porcentagem.ascx" />
     <Content Include="Form\Quantidade.aspx" />
     <Content Include="Form\WebUserControl1.ascx" />
-    <Content Include="Form\x.jpg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -711,13 +709,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Form\Grafico.ascx.cs">
-      <DependentUpon>Grafico.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form\Grafico.ascx.designer.cs">
-      <DependentUpon>Grafico.ascx</DependentUpon>
     </Compile>
     <Compile Include="Form\Porcentagem.ascx.cs">
       <DependentUpon>Porcentagem.ascx</DependentUpon>

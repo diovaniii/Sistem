@@ -21,8 +21,8 @@ namespace ViagemSeg
         public Nullable<int> Viagem { get; set; }
         public System.DateTime DataRecebimento { get; set; }
         public System.DateTime DataVencimento { get; set; }
-        public Nullable<int> Parcelas { get; set; }
-        public Nullable<decimal> Valor { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int Parcelas { get; set; }
+        public decimal Valor { get; set; }
+        public int Status { get; set; }
     }
 }

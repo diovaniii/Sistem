@@ -30,7 +30,7 @@ namespace ViagemWeb.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("bancoviagemEntities", throwIfV1Schema: false)
+            : base("bancoviagemEntities1", throwIfV1Schema: false)
         {
         }
 
