@@ -12,14 +12,16 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
+    
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    
+</head>
+<body>
     <script src="../Scripts/highcharts/5.0.14/highcharts.js"></script>
     <script src="../Scripts/highcharts/5.0.14/highcharts-more.js"></script>
     <script src="../Scripts/highcharts/5.0.14/modules/solid-gauge.js"></script>
     <link href="../Content/css/select2.css" rel="stylesheet" />
-</head>
-<body>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>

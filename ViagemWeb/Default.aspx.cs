@@ -15,16 +15,13 @@ namespace ViagemWeb
         //private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var requestCookie = Request.Cookies[AntiXsrfTokenKey];
-            //Guid requestCookieGuidValue;
-            //if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
-            //{
-            //    // Use the Anti-XSRF token from the cookie
-            //    CarregarListaViagem();
-            //    CarregaResultados();
-            //}
-            CarregarListaViagem();
-            CarregaResultados();
+            if(Context.User.Identity.Name != "")
+            {
+                CarregarListaViagem();
+                CarregaResultados();
+            }
+            
+            
         }
 
         private void CarregarListaViagem()
