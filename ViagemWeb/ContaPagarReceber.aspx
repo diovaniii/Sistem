@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ContaPagarReceber" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../Content/css/select2.min.css" rel="stylesheet" />
+<script src="../Scripts/select2.min.js"></script>
     <asp:Panel runat="server">
         <p />
         <fieldset>

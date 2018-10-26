@@ -71,9 +71,10 @@ namespace ViagemSeg.Svc
             using (var db = new bancoviagemEntities())
             {
                 var contas1 = db.contas.Where(a => a.Status == 0)
-                                         .Where(a => conta.Indentificador.Equals(a.Indentificador))
-                                         .Where(a => conta.Cliente.Equals(0) ? true : a.Cliente.Equals(conta.Cliente));
-                                         
+                    .Where(a => a.Indentificador == conta.Indentificador);
+                   
+                   if(conta.Cliente != 0)
+                      contas1= contas1.Where(a => a.Cliente == conta.Cliente);
 
                 return Mapeador.ListaConta(contas1.ToList());
             }

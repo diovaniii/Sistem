@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Lista de clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaCliente.aspx.cs" Inherits="ViagemWeb.ListaCliente" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
+    <link href="../Content/css/select2.min.css" rel="stylesheet" />
+<script src="../Scripts/select2.min.js"></script>
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
 
@@ -161,7 +162,9 @@
                 mascara(this, mtel);
             }
         }
-
+        $(document).ready(function(){
+  $(".js-example-basic-single").select2();
+});
     </script>
     <%--<script type="text/javascript">
         /* Máscaras ER */

@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Venda de Viagem" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VendaViagem.aspx.cs" Inherits="ViagemWeb.VendaViagem" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../Content/css/select2.min.css" rel="stylesheet" />
+<script src="../Scripts/select2.min.js"></script>
     <div class="row">
         <fieldset>
             <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">

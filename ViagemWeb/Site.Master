@@ -1,6 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ViagemWeb.SiteMaster" %>
+
 <%@ Register Src="~/Form/WebUserControl1.ascx" TagPrefix="sis" TagName="WebUserControl1" %>
 <%@ Register Src="~/Form/Porcentagem.ascx" TagPrefix="sis" TagName="Porcentagem" %>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,16 +14,17 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     
+
 </head>
 <body>
+    <link href="../Content/css" rel="stylesheet" />
     <script src="../Scripts/highcharts/5.0.14/highcharts.js"></script>
     <script src="../Scripts/highcharts/5.0.14/highcharts-more.js"></script>
     <script src="../Scripts/highcharts/5.0.14/modules/solid-gauge.js"></script>
-    <link href="../Content/css/select2.css" rel="stylesheet" />
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -54,7 +57,7 @@
                     <a class="navbar-brand" runat="server" href="~/">Application name</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                     <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
                         <%--<li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>--%>
@@ -107,7 +110,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">teste</a></li>--%>
                             </ul>
-                            </li>
+                        </li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -140,14 +143,14 @@
             </footer>
         </div>
     </form>
-</body>
-</html>
-<script type="text/javascript">
+    <script type="text/javascript">
+
     function pageLoad() {
         $(document).ready(function () {
             $('.js-example-basic-single').select2();
         });
     }
+
 
     $("#Quant").popover({
         placement: 'bottom',
@@ -224,3 +227,6 @@
         document.getElementById("Quant").setAttribute('value', quant);
     });
 </script>
+</body>
+</html>
+

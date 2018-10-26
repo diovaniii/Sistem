@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="Lista de Contas a Pagar e Receber" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaContaPagarReceber.aspx.cs" Inherits="ViagemWeb.ListaContaPagarReceber" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../Content/css/select2.min.css" rel="stylesheet" />
+<script src="../Scripts/select2.min.js"></script>
     <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <asp:Panel runat="server">
