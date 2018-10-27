@@ -11,6 +11,7 @@ using ViagemSeg.Dto;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using Microsoft.AspNet.Identity;
 
 namespace ViagemWeb
 {
@@ -22,6 +23,8 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string currentUserId = User.Identity.GetUserId();
+
             if (!IsPostBack)
             {
                 var vendaEncontrada = SvcVendaCliente.ListarVendaCliente();
@@ -32,7 +35,7 @@ namespace ViagemWeb
                 }
                 valorTotal.Text = ValorTotal.ToString();
                 carregaNome();
-                carregaViagem();
+                carregaViagem(currentUserId);
                 CarregaListaViagem();
                 lblNUmeroRegistro(SvcVendaCliente.ListarVendaCliente());
             }
@@ -46,9 +49,9 @@ namespace ViagemWeb
             uppPainelVenda.Update();
         }
 
-        protected void carregaViagem()
+        protected void carregaViagem(string pId)
         {
-            ddlViagem.DataSource = SvcViagem.ListarTodasViagens();
+            ddlViagem.DataSource = SvcViagem.ListarTodasViagens(pId);
             ddlViagem.DataBind();
             ddlViagem.Items.Insert(0, new ListItem("--Select--", "0"));
             uppPainelVenda.Update();
@@ -70,8 +73,8 @@ namespace ViagemWeb
         protected void CarregarValorTotal()
         {
             vendacliente vendaCliente = new vendacliente();
-            vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
-            vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+            vendaCliente.cliente_Id = Convert.ToInt32(ddlNome.SelectedValue);
+            vendaCliente.viagem_Id = Convert.ToInt32(ddlViagem.SelectedValue);
 
             var vendaEncontrada = SvcVendaCliente.Pesquisa(vendaCliente);
             decimal ValorTotal = 0;
@@ -85,8 +88,8 @@ namespace ViagemWeb
         protected void btnBuscarVenda_Click(object sender, EventArgs e)
         {
             vendacliente vendaCliente = new vendacliente();
-            vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
-            vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+            vendaCliente.cliente_Id = Convert.ToInt32(ddlNome.SelectedValue);
+            vendaCliente.viagem_Id = Convert.ToInt32(ddlViagem.SelectedValue);
 
             var vendaEncontrada = SvcVendaCliente.Pesquisa(vendaCliente);
             lblNUmeroRegistro(vendaEncontrada);
@@ -105,8 +108,8 @@ namespace ViagemWeb
         protected void CarregaListaTransicao()
         {
             vendacliente vendaCliente = new vendacliente();
-            vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
-            vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+            vendaCliente.cliente_Id = Convert.ToInt32(ddlNome.SelectedValue);
+            vendaCliente.viagem_Id = Convert.ToInt32(ddlViagem.SelectedValue);
 
             grpListaDeVenda.DataSource = SvcVendaCliente.Pesquisa(vendaCliente);
             grpListaDeVenda.DataBind();
@@ -145,8 +148,8 @@ namespace ViagemWeb
         protected void GerarPDF_Click(object sender, EventArgs e)
         {
             vendacliente vendaCliente = new vendacliente();
-            vendaCliente.VendaIdCliente = Convert.ToInt32(ddlNome.SelectedValue);
-            vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+            vendaCliente.cliente_Id = Convert.ToInt32(ddlNome.SelectedValue);
+            vendaCliente.viagem_Id = Convert.ToInt32(ddlViagem.SelectedValue);
 
             var vendaEncontrada = SvcVendaCliente.Pesquisa(vendaCliente);
 

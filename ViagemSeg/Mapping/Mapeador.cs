@@ -39,8 +39,8 @@ namespace ViagemSeg.Mapping
                 Viagem.ViagemId = item.Id;
                 Viagem.ViagemNome = item.Nome;
                 Viagem.ViagemLocal = item.Local;
-                Viagem.ViagemDataInicio = item.DataInicio?.ToShortDateString();
-                Viagem.ViagemDataFim = item.DataFim?.ToShortDateString();
+                Viagem.ViagemDataInicio = item.DataInicio.ToShortDateString();
+                Viagem.ViagemDataFim = item.DataFim.ToShortDateString();
                 Viagem.ViagemValor = Convert.ToString(item.Valor);
                 Viagem.ViagemEstado = item.Estado;
                 Viagem.ViagemDescricao = item.Descricao;
@@ -73,8 +73,8 @@ namespace ViagemSeg.Mapping
             {
                 var vendaCliente = new DtoVendaCliente();
                 vendaCliente.VendaId = item.VendaId;
-                vendaCliente.VendaIdCliente = item.VendaIdCliente;
-                vendaCliente.VendaIdViagem = item.VendaIdViagem;
+                vendaCliente.VendaIdCliente = item.cliente_Id;
+                vendaCliente.VendaIdViagem = item.viagem_Id;
                 vendaCliente.VendaValorViagem = item.VendaValorViagem;
                 vendaCliente.VendaValorPago = item.VendaValorPago;
                 vendaCliente.VendaDesconto = item.VendaDesconto;

@@ -22,7 +22,9 @@ namespace ViagemSeg
         public string Numero { get; set; }
         public int ClienteIdEndereco { get; set; }
         public Nullable<int> Origem { get; set; }
+        public string aspnetusers_Id { get; set; }
     
+        public virtual aspnetusers aspnetusers { get; set; }
         public virtual cliente cliente { get; set; }
     }
 }

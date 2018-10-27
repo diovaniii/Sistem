@@ -19,6 +19,17 @@ namespace ViagemSeg
         {
             this.aspnetuserclaims = new HashSet<aspnetuserclaims>();
             this.aspnetuserlogins = new HashSet<aspnetuserlogins>();
+            this.cliente = new HashSet<cliente>();
+            this.contas = new HashSet<contas>();
+            this.endereco = new HashSet<endereco>();
+            this.fornecedor = new HashSet<fornecedor>();
+            this.fretamento = new HashSet<fretamento>();
+            this.hotel = new HashSet<hotel>();
+            this.hotelviagem = new HashSet<hotelviagem>();
+            this.pestacaoservico = new HashSet<pestacaoservico>();
+            this.veiculo = new HashSet<veiculo>();
+            this.vendacliente = new HashSet<vendacliente>();
+            this.viagem = new HashSet<viagem>();
             this.aspnetroles = new HashSet<aspnetroles>();
         }
     
@@ -39,6 +50,28 @@ namespace ViagemSeg
         public virtual ICollection<aspnetuserclaims> aspnetuserclaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetuserlogins> aspnetuserlogins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cliente> cliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contas> contas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<endereco> endereco { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fornecedor> fornecedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fretamento> fretamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<hotel> hotel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<hotelviagem> hotelviagem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pestacaoservico> pestacaoservico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<veiculo> veiculo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<vendacliente> vendacliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<viagem> viagem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aspnetroles> aspnetroles { get; set; }
     }

@@ -21,5 +21,8 @@ namespace ViagemSeg
         public string Descricao { get; set; }
         public string Cliente { get; set; }
         public int Status { get; set; }
+        public string aspnetusers_Id { get; set; }
+    
+        public virtual aspnetusers aspnetusers { get; set; }
     }
 }

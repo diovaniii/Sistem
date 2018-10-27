@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -53,6 +54,8 @@ namespace ViagemWeb
                 _Fornecedor.Servico = txtDescricao.Text;
                 _Fornecedor.Telefone = Comun.ApenasNumeros(txtTelefone.Text);
                 _Fornecedor.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _Fornecedor.aspnetusers_Id = currentUserId;
 
 
                 SvcFornecedor.AlteraSalvaFornecedor(_Fornecedor);
@@ -66,6 +69,8 @@ namespace ViagemWeb
                 _Fornecedor.Servico = txtDescricao.Text;
                 _Fornecedor.Telefone = Comun.ApenasNumeros(txtTelefone.Text);
                 _Fornecedor.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _Fornecedor.aspnetusers_Id = currentUserId;
 
 
                 SvcFornecedor.AlteraSalvaFornecedor(_Fornecedor);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -91,6 +92,8 @@ namespace ViagemWeb
                 _cliente.DataNascimento = Convert.ToDateTime(txtDataNascimento.Text);
                 _cliente.Email = txtEmail.Text;
                 _cliente.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _cliente.aspnetusers_Id = currentUserId;
 
                 endereco enderecoPessoal = new endereco();
                 enderecoPessoal.Estado = txtEstado.Value;
@@ -98,6 +101,7 @@ namespace ViagemWeb
                 enderecoPessoal.Bairro = txtBairro.Text;
                 enderecoPessoal.Rua = txtRua.Text;
                 enderecoPessoal.Numero = txtNumero.Text;
+                enderecoPessoal.aspnetusers_Id = currentUserId;
                 if (enderecoPessoal.IsEmpty == false)
                 {
                     enderecoPessoal.Origem = 0;
@@ -109,6 +113,7 @@ namespace ViagemWeb
                 enderecoComercial.Bairro = txtBairroC.Text;
                 enderecoComercial.Rua = txtRuaC.Text;
                 enderecoComercial.Numero = txtNumeroC.Text;
+                enderecoComercial.aspnetusers_Id = currentUserId;
                 if (enderecoComercial.IsEmpty == false)
                 {
                     enderecoComercial.Origem = 1;
@@ -127,6 +132,8 @@ namespace ViagemWeb
                 _cliente.Email = txtEmail.Text;
                 _cliente.DataNascimento = Convert.ToDateTime(txtDataNascimento.Text);
                 _cliente.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _cliente.aspnetusers_Id = currentUserId;
 
                 endereco enderecoPessoal = new endereco();
                 enderecoPessoal.ClienteIdEndereco = _cliente.Id;
@@ -135,6 +142,7 @@ namespace ViagemWeb
                 enderecoPessoal.Bairro = txtBairro.Text;
                 enderecoPessoal.Rua = txtRua.Text;
                 enderecoPessoal.Numero = txtNumero.Text;
+                enderecoPessoal.aspnetusers_Id = currentUserId;
                 if (enderecoPessoal.IsEmpty == false)
                 {
                     enderecoPessoal.Origem = 0;
@@ -147,6 +155,7 @@ namespace ViagemWeb
                 enderecoComercial.Bairro = txtBairroC.Text;
                 enderecoComercial.Rua = txtRuaC.Text;
                 enderecoComercial.Numero = txtNumeroC.Text;
+                enderecoComercial.aspnetusers_Id = currentUserId;
                 if (enderecoComercial.IsEmpty == false)
                 {
                     enderecoComercial.Origem = 1;

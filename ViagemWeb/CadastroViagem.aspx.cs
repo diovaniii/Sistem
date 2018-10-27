@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -62,6 +63,8 @@ namespace ViagemWeb
                 _viagem.Descricao = txtDescricao.Text;
                 _viagem.Status = 0;
                 _viagem.Veiculo = Convert.ToInt32( ddlVeiculo.SelectedValue);
+                string currentUserId = User.Identity.GetUserId();
+                _viagem.aspnetusers_Id = currentUserId;
 
                 SvcViagem.AlteraSalva(_viagem);
                 Response.Redirect("ListaViagem.aspx");
@@ -79,6 +82,8 @@ namespace ViagemWeb
                 _viagem.Descricao = txtDescricao.Text;
                 _viagem.Status = 0;
                 _viagem.Veiculo = Convert.ToInt32(ddlVeiculo.SelectedValue);
+                string currentUserId = User.Identity.GetUserId();
+                _viagem.aspnetusers_Id = currentUserId;
 
                 SvcViagem.AlteraSalva(_viagem);
                 Response.Redirect("ListaViagem.aspx");
@@ -95,8 +100,8 @@ namespace ViagemWeb
 
             txtViagem.Text = _viagem.Nome;
             txtLocal.Text = _viagem.Local;
-            txtDataInicio.Text = _viagem.DataInicio?.ToString("yyyy-MM-dd");
-            txtDataFim.Text = _viagem.DataFim?.ToString("yyyy-MM-dd");
+            txtDataInicio.Text = _viagem.DataInicio.ToString("yyyy-MM-dd");
+            txtDataFim.Text = _viagem.DataFim.ToString("yyyy-MM-dd");
             txtValor.Text = _viagem.Valor.ToString();
             txtEstado.Value = _viagem.Estado;
             txtDescricao.Text = _viagem.Descricao;

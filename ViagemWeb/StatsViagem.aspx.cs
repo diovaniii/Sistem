@@ -48,7 +48,7 @@ namespace ViagemWeb
             //if (passagemVendida == null)
             //    return;
             var t = quantidadePassagem.Veiculo;
-            var assento = SvcVeiculo.BuscarVeiculo(t.Value);
+            var assento = SvcVeiculo.BuscarVeiculo(t);
             var r = assento.Lugares.Value;
             var y = passagemVendida.Count();
             var total = (100 / r) * y;
@@ -65,8 +65,8 @@ namespace ViagemWeb
 
             txtViagem.Text = _viagem.Nome;
             txtLocal.Text = _viagem.Local;
-            txtDataInicio.Text = _viagem.DataInicio?.ToString("yyyy-MM-dd");
-            txtDataFim.Text = _viagem.DataFim?.ToString("yyyy-MM-dd");
+            txtDataInicio.Text = _viagem.DataInicio.ToString("yyyy-MM-dd");
+            txtDataFim.Text = _viagem.DataFim.ToString("yyyy-MM-dd");
             txtValor.Text = _viagem.Valor.ToString();
             txtEstado.Value = _viagem.Estado;
             txtDescricao.Text = _viagem.Descricao;
@@ -107,7 +107,7 @@ namespace ViagemWeb
         {
             //var esperado = SvcVendaCliente.PesquisaViagem(id);
             var esperado = SvcViagem.BuscarViagem(id);
-            var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo.Value).Lugares;
+            var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo).Lugares;
             var soma = esperado.Valor * assento;
             txbValorTotal.Text = Convert.ToString(soma);
             var vendas = SvcVendaCliente.PesquisaViagem(id);

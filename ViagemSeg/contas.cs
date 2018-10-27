@@ -16,13 +16,16 @@ namespace ViagemSeg
     {
         public int Id { get; set; }
         public int Cliente { get; set; }
-        public Nullable<int> Fornecedor { get; set; }
-        public Nullable<int> Indentificador { get; set; }
-        public Nullable<int> Viagem { get; set; }
+        public int Fornecedor { get; set; }
+        public int Indentificador { get; set; }
+        public int Viagem { get; set; }
         public System.DateTime DataRecebimento { get; set; }
         public System.DateTime DataVencimento { get; set; }
         public int Parcelas { get; set; }
         public decimal Valor { get; set; }
         public int Status { get; set; }
+        public string aspnetusers_Id { get; set; }
+    
+        public virtual aspnetusers aspnetusers { get; set; }
     }
 }

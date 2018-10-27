@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,14 +11,16 @@ namespace ViagemWeb
 {
     public partial class ListaViagem : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            CarregarListaViagem();
+            string currentUserId = User.Identity.GetUserId();
+            CarregarListaViagem(currentUserId);
         }
 
-        private void CarregarListaViagem()
+        private void CarregarListaViagem(string pId)
         {
-            grpListaDeViagem.DataSource = SvcViagem.ListarTodasViagens();
+            grpListaDeViagem.DataSource = SvcViagem.ListarTodasViagens(pId);
             grpListaDeViagem.DataBind();
             uppGridViewViagem.Update();
         }
@@ -37,7 +40,8 @@ namespace ViagemWeb
         {
             var valor = Convert.ToInt32(e.CommandArgument);
             SvcViagem.Excluir(valor);
-            CarregarListaViagem();
+            string currentUserId = User.Identity.GetUserId();
+            CarregarListaViagem(currentUserId);
         }
         protected void Stats(object sender, CommandEventArgs e)
         {

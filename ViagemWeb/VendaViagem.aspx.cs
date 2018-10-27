@@ -1,4 +1,5 @@
-﻿using PdfSharp.Pdf;
+﻿using Microsoft.AspNet.Identity;
+using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,10 +16,12 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string currentUserId = User.Identity.GetUserId();
+
             if (!IsPostBack)
             {
                 carregaNome();
-                CarregarListaViagem();
+                CarregarListaViagem(currentUserId);
                 CarregarListaAssento();
             }
 
@@ -100,9 +103,9 @@ namespace ViagemWeb
             UpdatePanel.Update();
         }
 
-        private void CarregarListaViagem()
+        private void CarregarListaViagem(string pId)
         {
-            ddlViagem.DataSource = SvcViagem.ListarTodasViagens();
+            ddlViagem.DataSource = SvcViagem.ListarTodasViagens(pId);
             ddlViagem.DataBind();
             UpdatePanel.Update();
         }
@@ -177,7 +180,7 @@ namespace ViagemWeb
             List<vendacliente> listaVendaCliente = new List<vendacliente>();
             foreach (GridViewRow item in grpVendaCliente.Rows)
             {
-
+                string currentUserId = User.Identity.GetUserId();
                 vendacliente vendaCliente = new vendacliente();
                 //SALVA ID DO CLIENTE
                 TextBox nome = (TextBox)item.FindControl("txtNome");
@@ -185,7 +188,7 @@ namespace ViagemWeb
                 {
                     DropDownList idCliente = (DropDownList)item.FindControl("ddlCliente1");
                     string selectvalueCliente = idCliente.SelectedValue;
-                    vendaCliente.VendaIdCliente = Convert.ToInt32(selectvalueCliente);
+                    vendaCliente.cliente_Id = Convert.ToInt32(selectvalueCliente);
                 }
                 else
                 {
@@ -200,13 +203,15 @@ namespace ViagemWeb
                     cliente.Status = 0;
                     cliente.Email = "semEmail@semEmail.com";
                     cliente.Telefone = "00000000000";
+                    cliente.aspnetusers_Id = currentUserId;
                     cliente = SvcCliente.AlteraSalva(cliente, enderecoPessoal, enderecoComercial);
-                    vendaCliente.VendaIdCliente = cliente.Id;
+                    
+                    vendaCliente.cliente_Id = cliente.Id;
                     
                 }
                 
 
-                vendaCliente.VendaIdViagem = Convert.ToInt32(ddlViagem.SelectedValue);
+                vendaCliente.viagem_Id = Convert.ToInt32(ddlViagem.SelectedValue);
 
 
                 string faixaEtaria = item.Cells[2].Text;
@@ -240,6 +245,7 @@ namespace ViagemWeb
                     return;
                 }
                 vendaCliente.Status = 0;
+                vendaCliente.aspnetusers_Id = currentUserId;
                 listaVendaCliente.Add(vendaCliente);
  
             }
@@ -284,7 +290,7 @@ namespace ViagemWeb
             {
                 ValorTotal += item.VendaValorPago;
                 y = y + 30;
-                textFormatter.DrawString(SvcCliente.BuscarCliente(item.VendaIdCliente).Nome, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
+                textFormatter.DrawString(SvcCliente.BuscarCliente(item.cliente_Id).Nome, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(30, y, page.Width - 60, page.Height - 60));
                 textFormatter.DrawString(item.FaixaEtaria, font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(200, y, page.Width - 60, page.Height - 60));
                 textFormatter.DrawString(item.Assento.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(300, y, page.Width - 60, page.Height - 60));
                 textFormatter.DrawString(item.VendaValorPago.ToString(), font, PdfSharp.Drawing.XBrushes.Black, new PdfSharp.Drawing.XRect(370, y, page.Width - 60, page.Height - 60));

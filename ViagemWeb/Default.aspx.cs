@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,23 +11,27 @@ namespace ViagemWeb
 {
     public partial class _Default : Page
     {
-        //private string _antiXsrfTokenValue;
-        //private const string AntiXsrfTokenKey = "__AntiXsrfToken";
-        //private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Context.User.Identity.Name != "")
+            string currentUserId = User.Identity.GetUserId();
+
+            if (currentUserId != null)
             {
-                CarregarListaViagem();
-                CarregaResultados();
+                CarregarListaViagem(currentUserId);
+                CarregaResultados(currentUserId);
+            }
+            else
+            {
+                Response.Redirect("Account/Login.aspx");
             }
             
             
         }
 
-        private void CarregarListaViagem()
+        private void CarregarListaViagem(string pId)
         {
-            grpListaDeViagem.DataSource = SvcViagem.ListarTodasViagens();
+            grpListaDeViagem.DataSource = SvcViagem.ListarTodasViagens(pId);
             grpListaDeViagem.DataBind();
             uppGridViewViagem.Update();
         }
@@ -35,14 +40,14 @@ namespace ViagemWeb
         decimal total;
         decimal totalDespesas;
 
-        protected void CarregaResultados()
+        protected void CarregaResultados(string pId)
         {
             //var esperado = SvcVendaCliente.PesquisaViagem(id);
-            var todasViagens = SvcViagem.ListarTodasViagens();
+            var todasViagens = SvcViagem.ListarTodasViagens(pId);
             foreach (var item in todasViagens)
             {
                 var esperado = SvcViagem.BuscarViagem(item.ViagemId);
-                var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo.Value).Lugares;
+                var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo).Lugares;
                 if (soma == null)
                 {
                     soma = esperado.Valor * assento;

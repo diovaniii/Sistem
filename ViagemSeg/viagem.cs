@@ -23,14 +23,16 @@ namespace ViagemSeg
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Local { get; set; }
-        public Nullable<System.DateTime> DataInicio { get; set; }
-        public Nullable<System.DateTime> DataFim { get; set; }
-        public Nullable<decimal> Valor { get; set; }
+        public System.DateTime DataInicio { get; set; }
+        public System.DateTime DataFim { get; set; }
+        public decimal Valor { get; set; }
         public string Estado { get; set; }
         public string Descricao { get; set; }
-        public Nullable<int> Status { get; set; }
-        public Nullable<int> Veiculo { get; set; }
+        public int Status { get; set; }
+        public int Veiculo { get; set; }
+        public string aspnetusers_Id { get; set; }
     
+        public virtual aspnetusers aspnetusers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<vendacliente> vendacliente { get; set; }
     }

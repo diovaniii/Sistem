@@ -71,7 +71,7 @@ namespace ViagemSeg.Svc
             using (var db = new bancoviagemEntities())
             {
                 var viagens = db.vendacliente.Where(a => a.Status == 0)
-                                         .Where(a => a.VendaIdViagem == idViagem);
+                                         .Where(a => a.viagem_Id == idViagem);
 
                 return viagens.ToList();
             }
@@ -82,8 +82,8 @@ namespace ViagemSeg.Svc
             using (var db = new bancoviagemEntities())
             {
                 var VendaCliente = db.vendacliente.Where(a => a.Status == 0)
-                                         .Where(a => pVendaCliente.VendaIdCliente.Equals(0) ? true : a.VendaIdCliente.ToString().Contains(pVendaCliente.VendaIdCliente.ToString()))
-                                         .Where(a => pVendaCliente.VendaIdViagem.Equals(0) ? true : a.VendaIdViagem.ToString().Contains(pVendaCliente.VendaIdViagem.ToString()));
+                                         .Where(a => pVendaCliente.cliente_Id.Equals(0) ? true : a.cliente_Id.ToString().Contains(pVendaCliente.cliente_Id.ToString()))
+                                         .Where(a => pVendaCliente.viagem_Id.Equals(0) ? true : a.viagem_Id.ToString().Contains(pVendaCliente.viagem_Id.ToString()));
                 return Mapeador.ListaVenda(VendaCliente.ToList());
             }
         }

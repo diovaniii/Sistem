@@ -4,26 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="80a4c68d755d4c1ba7d08b299573536f" Name="Diagram1">
-        <EntityTypeShape EntityType="bancoviagemModel.C__migrationhistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.aspnetroles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.aspnetuserclaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.aspnetuserlogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.aspnetusers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.cliente" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.contas" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.endereco" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.fornecedor" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.fretamento" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.hotel" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.hotelviagem" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.pestacaoservico" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.veiculo" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.vendacliente" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bancoviagemModel.viagem" Width="1.5" PointX="3.75" PointY="12.875" IsExpanded="true" />
+      <Diagram DiagramId="000b4773c82c4883816dbdfd2aa9ad5e" Name="Diagram1">
+        <EntityTypeShape EntityType="bancoviagemModel.C__migrationhistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.aspnetroles" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.aspnetuserclaims" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.aspnetuserlogins" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.aspnetusers" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.cliente" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.contas" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.endereco" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.fornecedor" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.fretamento" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.hotel" Width="1.5" PointX="5.25" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.hotelviagem" Width="1.5" PointX="5.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.pestacaoservico" Width="1.5" PointX="5.25" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.veiculo" Width="1.5" PointX="5.25" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.vendacliente" Width="1.5" PointX="7.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bancoviagemModel.viagem" Width="1.5" PointX="5.25" PointY="37.5" IsExpanded="true" />
         <AssociationConnector Association="bancoviagemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="bancoviagemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="bancoviagemModel.fk_endereco_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_cliente_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_contas_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_endereco_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_fornecedor_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_fretamento_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_hotel_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_hotelviagem_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_pestacaoservico_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_veiculo_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_vendacliente_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_viagem_aspnetusers1" ManuallyRouted="false" />
+        <AssociationConnector Association="bancoviagemModel.fk_endereco_cliente1" ManuallyRouted="false" />
         <AssociationConnector Association="bancoviagemModel.fk_vendacliente_cliente1" ManuallyRouted="false" />
         <AssociationConnector Association="bancoviagemModel.fk_vendacliente_viagem1" ManuallyRouted="false" />
         <AssociationConnector Association="bancoviagemModel.aspnetuserroles" ManuallyRouted="false" />

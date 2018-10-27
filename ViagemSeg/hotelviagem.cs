@@ -19,5 +19,8 @@ namespace ViagemSeg
         public Nullable<int> ViagemIdHotel { get; set; }
         public Nullable<System.DateTime> ViagemDias { get; set; }
         public Nullable<decimal> ViagemValorUnitario { get; set; }
+        public string aspnetusers_Id { get; set; }
+    
+        public virtual aspnetusers aspnetusers { get; set; }
     }
 }

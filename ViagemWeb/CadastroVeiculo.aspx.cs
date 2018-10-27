@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +69,8 @@ namespace ViagemWeb
                 _veiculo.Placa = txtPlaca.Text;
                 _veiculo.Identificacao = txtIdentificacao.Text;
                 _veiculo.Status = 0;
-                
+                string currentUserId = User.Identity.GetUserId();
+                _veiculo.aspnetusers_Id = currentUserId;
 
                 SvcVeiculo.AlteraSalvaVeiculo(_veiculo);
                 Response.Redirect("ListaVeiculo.aspx");
@@ -81,6 +84,8 @@ namespace ViagemWeb
                 _veiculo.Placa = txtPlaca.Text;
                 _veiculo.Identificacao = txtIdentificacao.Text;
                 _veiculo.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _veiculo.aspnetusers_Id = currentUserId;
 
 
                 SvcVeiculo.AlteraSalvaVeiculo(_veiculo);

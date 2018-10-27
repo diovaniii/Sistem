@@ -13,6 +13,33 @@ namespace ViagemWeb {
     public partial class SiteMaster {
         
         /// <summary>
+        /// dropMenu1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropMenu1;
+        
+        /// <summary>
+        /// dropMenu2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropMenu2;
+        
+        /// <summary>
+        /// dropMenu3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropMenu3;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

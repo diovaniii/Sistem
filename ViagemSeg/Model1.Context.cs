@@ -19,12 +19,12 @@ namespace ViagemSeg
             : base("name=bancoviagemEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<C__migrationhistory> C__migrationhistory { get; set; }
         public virtual DbSet<aspnetroles> aspnetroles { get; set; }
         public virtual DbSet<aspnetuserclaims> aspnetuserclaims { get; set; }

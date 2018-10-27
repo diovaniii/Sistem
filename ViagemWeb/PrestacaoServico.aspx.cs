@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -44,6 +45,8 @@ namespace ViagemWeb
                 _Servico.Descricao = txtServico.Text;
                 _Servico.Valor = Convert.ToDecimal(txtValor.Text);
                 _Servico.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _Servico.aspnetusers_Id = currentUserId;
 
 
                 SvcServico.AlteraSalvaServico(_Servico);
@@ -57,6 +60,8 @@ namespace ViagemWeb
                 _Servico.Descricao = txtServico.Text;
                 _Servico.Valor = Convert.ToInt32(txtValor.Text);
                 _Servico.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _Servico.aspnetusers_Id = currentUserId;
 
 
                 SvcServico.AlteraSalvaServico(_Servico);

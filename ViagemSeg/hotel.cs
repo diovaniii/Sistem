@@ -19,5 +19,8 @@ namespace ViagemSeg
         public string Local { get; set; }
         public string elefone { get; set; }
         public string Contato { get; set; }
+        public string aspnetusers_Id { get; set; }
+    
+        public virtual aspnetusers aspnetusers { get; set; }
     }
 }

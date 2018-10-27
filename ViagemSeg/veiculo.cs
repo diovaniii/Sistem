@@ -20,5 +20,8 @@ namespace ViagemSeg
         public string Placa { get; set; }
         public string Identificacao { get; set; }
         public Nullable<int> Status { get; set; }
+        public string aspnetusers_Id { get; set; }
+    
+        public virtual aspnetusers aspnetusers { get; set; }
     }
 }

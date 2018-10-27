@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -43,6 +44,8 @@ namespace ViagemWeb
                 _Fretamento.Descricao = txtDescricao.Text;
                 _Fretamento.Cliente = txtCliente.Text;
                 _Fretamento.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _Fretamento.aspnetusers_Id = currentUserId;
 
 
                 SvcFretamento.AlteraSalvaFretamento(_Fretamento);
@@ -58,6 +61,8 @@ namespace ViagemWeb
                 _Fretamento.Descricao = txtDescricao.Text;
                 _Fretamento.Cliente = txtCliente.Text;
                 _Fretamento.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                _Fretamento.aspnetusers_Id = currentUserId;
 
 
                 SvcFretamento.AlteraSalvaFretamento(_Fretamento);

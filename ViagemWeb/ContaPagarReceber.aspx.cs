@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,13 +20,15 @@ namespace ViagemWeb
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            string currentUserId = User.Identity.GetUserId();
+
             if (!IsPostBack)
             {
                 CarregarTipo();
                 HabilitarTipo();
                 //carregaNome();
                 //CarregaFornecedor();
-                CarregarViagem();
+                CarregarViagem(currentUserId);
 
                 contaList = new List<contas>();
                 btnSalvar.Visible = false;
@@ -62,6 +65,8 @@ namespace ViagemWeb
                 conta.DataRecebimento = Convert.ToDateTime(txtDataRecebido.Text);
                 conta.Parcelas = i + 1;
                 conta.Status = 0;
+                string currentUserId = User.Identity.GetUserId();
+                conta.aspnetusers_Id = currentUserId;
                 contaList.Add(conta);
             }
             grpConta.DataSource = contaList;
@@ -124,9 +129,9 @@ namespace ViagemWeb
         //    ddlFornecedor.DataBind();
         //    UpdatePanel.Update();
         //}
-        protected void CarregarViagem()
+        protected void CarregarViagem(string pId)
         {
-            ddlViagem.DataSource = SvcViagem.ListarTodasViagens();
+            ddlViagem.DataSource = SvcViagem.ListarTodasViagens(pId);
             ddlViagem.DataBind();
             UpdatePanel.Update();
         }

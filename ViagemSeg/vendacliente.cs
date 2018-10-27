@@ -15,15 +15,17 @@ namespace ViagemSeg
     public partial class vendacliente
     {
         public int VendaId { get; set; }
-        public int VendaIdCliente { get; set; }
-        public int VendaIdViagem { get; set; }
         public decimal VendaValorViagem { get; set; }
         public decimal VendaValorPago { get; set; }
         public decimal VendaDesconto { get; set; }
         public string FaixaEtaria { get; set; }
         public int Status { get; set; }
         public int Assento { get; set; }
+        public string aspnetusers_Id { get; set; }
+        public int cliente_Id { get; set; }
+        public int viagem_Id { get; set; }
     
+        public virtual aspnetusers aspnetusers { get; set; }
         public virtual cliente cliente { get; set; }
         public virtual viagem viagem { get; set; }
     }

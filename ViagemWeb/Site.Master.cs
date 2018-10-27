@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using System.Web.Providers.Entities;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -69,6 +70,12 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           if(Context.User.Identity.Name != "")
+            {
+                dropMenu1.Visible = true;
+                dropMenu2.Visible = true;
+                dropMenu3.Visible = true;
+            }
 
         }
 
