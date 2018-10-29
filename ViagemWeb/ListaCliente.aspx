@@ -64,7 +64,7 @@
                                 <%--<asp:Button ID="btnCadastro" runat="server" Text="+ Cadastrar" Class=" btn btn-cadastro-lista" OnClick="btnCadastro_Click" />--%>
                                 <asp:LinkButton runat="server" ID="btnCadastro"
                                     CssClass="btn-cadastro-lista btn btn-default"
-                                    OnClick="btnCadastro_Click">
+                                    OnClick="btnCadastro_Click" style=" margin-bottom: 10px">
                                 <i class="glyphicon glyphicon-plus sat-icon-with-text" style="margin-right: 3px;"></i>
                                 Cadastrar
                                 </asp:LinkButton>

@@ -2,15 +2,15 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/css/select2.min.css" rel="stylesheet" />
-<script src="../Scripts/select2.min.js"></script>
+    <script src="../Scripts/select2.min.js"></script>
     <div class="row">
-        <fieldset>
+        
             <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
 
                     <panel runat="server">
                 <p />
-                
+                <fieldset>
                     <legend>Venda de Viagem</legend>
                     
                         <div class="col-md-3">
@@ -188,7 +188,7 @@
     <input type="hidden" id="ListaAssento" runat="server" clientidmode="static" />
     <input type="hidden" id="Diferenca" runat="server" clientidmode="static" />
     <input type="hidden" id="QuantidadeAssento" runat="server" clientidmode="static" />
-    <input id="valorTotal" runat="server" class="form-control" clientidmode="static" />
+    <input id="valorTotal" runat="server" class="form-control" clientidmode="static" visible="false" />
     <div class="col-md-3">
         <label>
             <br>
@@ -226,10 +226,10 @@
                         className += ' ' + settings.selectedSeatCss;
                     }
                     if ($.inArray(seatNo, branco) == -1) {
-                       str.push('<li class="' + className + '"' +
-                        'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
-                        '<a title="' + seatNo + '">' + seatNo + '</a>' +
-                        '</li>');
+                        str.push('<li class="' + className + '"' +
+                            'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
+                            '<a title="' + seatNo + '">' + seatNo + '</a>' +
+                            '</li>');
                     }
                 }
             }
@@ -266,7 +266,7 @@
                 $(this).removeClass('tempSelectedSeat');
                 //seleciona no componente a poltrona 
                 $(this).addClass(settings.selectingSeatCss);
-                
+
                 const seatSelected = $(this).text();
                 var seatFound = bookedSeatsSelected.filter(e => e == seatSelected);
                 if (seatFound.length == 0) {

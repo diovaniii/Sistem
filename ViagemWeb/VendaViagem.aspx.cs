@@ -85,7 +85,7 @@ namespace ViagemWeb
                 listaVendaClientes.Add(vendaCliente);
             }
 
-            
+            valorTotal.Visible = true;
             grpVendaCliente.DataSource = listaVendaClientes;
             grpVendaCliente.DataBind();
             CarregarListaAssento(currentUserId);

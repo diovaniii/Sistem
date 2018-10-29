@@ -30,14 +30,15 @@
                                 <asp:TextBox ID="txtCpf" runat="server" Class="form-control" MaxLength="14"></asp:TextBox>
                             </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>
                                 Data de nascimento:
                                 <br>
                                 <asp:TextBox ID="txtDataNascimento" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
                             </label>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
+                            <br />
                             <asp:LinkButton runat="server" ID="btnBuscar"
                                 CssClass="btn-buscar btn btn-default"
                                 OnClick="btnBuscar_Click">
