@@ -17,8 +17,6 @@ namespace ViagemWeb
 {
     public partial class ListaVendaViagem : System.Web.UI.Page
     {
-        
-
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,7 +25,7 @@ namespace ViagemWeb
 
             if (!IsPostBack)
             {
-                var vendaEncontrada = SvcVendaCliente.ListarVendaCliente();
+                var vendaEncontrada = SvcVendaCliente.ListarVendaCliente(currentUserId);
                 decimal ValorTotal = 0;
                 foreach (var item in vendaEncontrada)
                 {
@@ -37,13 +35,14 @@ namespace ViagemWeb
                 carregaNome();
                 carregaViagem(currentUserId);
                 CarregaListaViagem();
-                lblNUmeroRegistro(SvcVendaCliente.ListarVendaCliente());
+                lblNUmeroRegistro(SvcVendaCliente.ListarVendaCliente(currentUserId));
             }
         }
 
         protected void carregaNome()
         {
-            ddlNome.DataSource = SvcCliente.ListarTodosClientes();
+            string currentUserId = User.Identity.GetUserId();
+            ddlNome.DataSource = SvcCliente.ListarTodosClientes(currentUserId);
             ddlNome.DataBind();
             ddlNome.Items.Insert(0, new ListItem("--Select--", "0"));
             uppPainelVenda.Update();
@@ -59,7 +58,8 @@ namespace ViagemWeb
 
         private void CarregaListaViagem()
         {
-            grpListaDeVenda.DataSource = SvcVendaCliente.ListarVendaCliente();
+            string currentUserId = User.Identity.GetUserId();
+            grpListaDeVenda.DataSource = SvcVendaCliente.ListarVendaCliente(currentUserId);
             grpListaDeVenda.DataBind();
             uppGridView.Update();
         }

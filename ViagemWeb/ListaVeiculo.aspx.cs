@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,8 @@ namespace ViagemWeb
 
         private void CarregarListaVeiculo()
         {
-            grpListaDeVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos();
+            string currentUserId = User.Identity.GetUserId();
+            grpListaDeVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos(currentUserId);
             grpListaDeVeiculo.DataBind();
             uppGridViewVeiculo.Update();
         }

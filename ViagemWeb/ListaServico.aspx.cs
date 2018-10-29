@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,8 @@ namespace ViagemWeb
 
         private void CarregarListaServico()
         {
-            grpListaDeServico.DataSource = SvcServico.ListarServico();
+            string currentUserId = User.Identity.GetUserId();
+            grpListaDeServico.DataSource = SvcServico.ListarServico(currentUserId);
             grpListaDeServico.DataBind();
             uppGridViewServico.Update();
         }

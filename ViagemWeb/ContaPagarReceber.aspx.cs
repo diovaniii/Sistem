@@ -95,12 +95,13 @@ namespace ViagemWeb
 
         protected void HabilitarTipo()
         {
+            string currentUserId = User.Identity.GetUserId();
             if (ddlTípo.SelectedValue == "0")
             {
                 ddlCliente.Visible = true;
                 //ddlFornecedor.Visible = true;
                 //ddlFornecedor.Visible = false;
-                ddlCliente.DataSource = SvcFornecedor.ListarFornecedor();
+                ddlCliente.DataSource = SvcFornecedor.ListarFornecedor(currentUserId);
                 ddlCliente.DataTextField = "FornecedorNome";
                 ddlCliente.DataValueField = "FornecedorId";
                 ddlCliente.DataBind();
@@ -110,7 +111,7 @@ namespace ViagemWeb
             {
                 //ddlFornecedor.Visible = false;
                 ddlCliente.Visible = true;
-                ddlCliente.DataSource = SvcCliente.ListarTodosClientes();
+                ddlCliente.DataSource = SvcCliente.ListarTodosClientes(currentUserId);
                 ddlCliente.DataTextField = "ClienteNome";
                 ddlCliente.DataValueField = "ClienteId";
                 ddlCliente.DataBind();

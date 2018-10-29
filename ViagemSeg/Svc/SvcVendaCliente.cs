@@ -13,20 +13,20 @@ namespace ViagemSeg.Svc
     {
         private static bancoviagemEntities db = new bancoviagemEntities();
 
-        public static List<DtoVendaCliente> ListarVendaCliente()
+        public static List<DtoVendaCliente> ListarVendaCliente(string pId)
         {
             using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaVenda(db.vendacliente.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaVenda(db.vendacliente.ToList().FindAll(a => a.Status == 0 && a.aspnetusers_Id == pId));
                 return result;
             }
         }
 
-        public static List<viagem> ListarViagem()
+        public static List<viagem> ListarViagem(string pId)
         {
             using (var db = new bancoviagemEntities())
             {
-                var result = db.viagem.ToList().FindAll(a => a.Status == 0);
+                var result = db.viagem.ToList().FindAll(a => a.Status == 0 && a.aspnetusers_Id == pId);
                 return result;
             }
         }
@@ -66,12 +66,13 @@ namespace ViagemSeg.Svc
             return vendaCliente;
         }
 
-        public static List<vendacliente> PesquisaViagem(int idViagem)
+        public static List<vendacliente> PesquisaViagem(int idViagem, string pId)
         {
             using (var db = new bancoviagemEntities())
             {
                 var viagens = db.vendacliente.Where(a => a.Status == 0)
-                                         .Where(a => a.viagem_Id == idViagem);
+                                         .Where(a => a.viagem_Id == idViagem)
+                                         .Where(a => a.aspnetusers_Id == pId);
 
                 return viagens.ToList();
             }

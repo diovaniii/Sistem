@@ -56,7 +56,7 @@ namespace ViagemWeb
                 {
                     soma = soma + (esperado.Valor * assento);
                 }
-                var vendas = SvcVendaCliente.PesquisaViagem(item.ViagemId);
+                var vendas = SvcVendaCliente.PesquisaViagem(item.ViagemId, pId);
                 foreach (var item1 in vendas)
                 {
                     total = total + item1.VendaValorPago;

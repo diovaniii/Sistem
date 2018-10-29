@@ -22,7 +22,8 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            carregaNome();
+            string currentUserId = User.Identity.GetUserId();
+            carregaNome(currentUserId);
             //very first load//
             string id = Request.QueryString["ServicoId"];
             if (!string.IsNullOrEmpty(id))
@@ -78,9 +79,9 @@ namespace ViagemWeb
             Response.Redirect("CadastroServico.aspx");
         }
 
-        protected void carregaNome()
+        protected void carregaNome(string pId)
         {
-            ddlFornecedor.DataSource = SvcFornecedor.ListarFornecedor();
+            ddlFornecedor.DataSource = SvcFornecedor.ListarFornecedor(pId);
             ddlFornecedor.DataBind();
             UpdatePanel.Update();
         }

@@ -111,7 +111,8 @@ namespace ViagemWeb
 
         protected void carregaVeiculo()
         {
-            ddlVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos() ;
+            string currentUserId = User.Identity.GetUserId();
+            ddlVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos(currentUserId) ;
             ddlVeiculo.DataBind();
             UpdatePanel.Update();
         }

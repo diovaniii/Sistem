@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -46,7 +47,8 @@ namespace ViagemWeb
 
         protected void ListaConta()
         {
-            grpListaContas.DataSource = SvcContaPagarReceber.ListarContas();
+            string currentUserId = User.Identity.GetUserId();
+            grpListaContas.DataSource = SvcContaPagarReceber.ListarContas(currentUserId);
             grpListaContas.DataBind();
             uppGridView.Update();
         }
@@ -64,12 +66,13 @@ namespace ViagemWeb
 
         protected void HabilitarTipo()
         {
+            string currentUserId = User.Identity.GetUserId();
             if (ddlTípo.SelectedValue == "0")
             {
                 ddlCliente.Visible = true;
                 //ddlFornecedor.Visible = true;
                 //ddlFornecedor.Visible = false;
-                ddlCliente.DataSource = SvcFornecedor.ListarFornecedor();
+                ddlCliente.DataSource = SvcFornecedor.ListarFornecedor(currentUserId);
                 ddlCliente.DataTextField = "FornecedorNome";
                 ddlCliente.DataValueField = "FornecedorId";
                 ddlCliente.DataBind();
@@ -80,7 +83,7 @@ namespace ViagemWeb
             {
                 //ddlFornecedor.Visible = false;
                 ddlCliente.Visible = true;
-                ddlCliente.DataSource = SvcCliente.ListarTodosClientes();
+                ddlCliente.DataSource = SvcCliente.ListarTodosClientes(currentUserId);
                 ddlCliente.DataTextField = "ClienteNome";
                 ddlCliente.DataValueField = "ClienteId";
                 ddlCliente.DataBind();

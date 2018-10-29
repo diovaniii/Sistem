@@ -13,11 +13,11 @@ namespace ViagemSeg.Svc
     {
         private static bancoviagemEntities db = new bancoviagemEntities();
 
-        public static List<DtoFornecedor> ListarFornecedor()
+        public static List<DtoFornecedor> ListarFornecedor(string pId)
         {
             using (var db = new bancoviagemEntities())
             {
-                var result = Mapeador.ListaFornecedor(db.fornecedor.ToList().FindAll(a => a.Status == 0));
+                var result = Mapeador.ListaFornecedor(db.fornecedor.ToList().FindAll(a => a.Status == 0 && a.aspnetusers_Id == pId));
                 return result;
             }
         }

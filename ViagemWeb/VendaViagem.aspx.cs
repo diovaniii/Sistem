@@ -20,9 +20,9 @@ namespace ViagemWeb
 
             if (!IsPostBack)
             {
-                carregaNome();
+                carregaNome(currentUserId);
                 CarregarListaViagem(currentUserId);
-                CarregarListaAssento();
+                CarregarListaAssento(currentUserId);
             }
 
         }
@@ -30,6 +30,7 @@ namespace ViagemWeb
 
         protected void salvarQuantidade_Click(object sender, EventArgs e)
         {
+            string currentUserId = User.Identity.GetUserId();
             if (quantidadeAdulto.Value == "")
                 quantidadeAdulto.Value = "0";
             if (quantidadeAdolecente.Value == "")
@@ -45,7 +46,7 @@ namespace ViagemWeb
             lblTeste.Visible = true;
             uppPanel.Update();
 
-            List<viagem> viagems = SvcVendaCliente.ListarViagem();
+            List<viagem> viagems = SvcVendaCliente.ListarViagem(currentUserId);
             viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
             List<vendacliente> listaVendaClientes = new List<vendacliente>();
             cliente cliente = new cliente();
@@ -87,7 +88,7 @@ namespace ViagemWeb
             
             grpVendaCliente.DataSource = listaVendaClientes;
             grpVendaCliente.DataBind();
-            CarregarListaAssento();
+            CarregarListaAssento(currentUserId);
             uppGridView.Update();
 
             quantidadeAdulto.Value = "0";
@@ -96,9 +97,9 @@ namespace ViagemWeb
             quantidadeBebe.Value = "0";
         }
 
-        protected void carregaNome()
+        protected void carregaNome(string pId)
         {
-            ddlCliente.DataSource = SvcCliente.ListarTodosClientes();
+            ddlCliente.DataSource = SvcCliente.ListarTodosClientes(pId);
             ddlCliente.DataBind();
             UpdatePanel.Update();
         }
@@ -110,13 +111,13 @@ namespace ViagemWeb
             UpdatePanel.Update();
         }
 
-        private void CarregarListaAssento()
+        private void CarregarListaAssento(string pId)
         {
-            List<viagem> viagems = SvcVendaCliente.ListarViagem();
-            viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue)).FirstOrDefault();
+            List<viagem> viagems = SvcVendaCliente.ListarViagem(pId);
+            viagem viagem = viagems.Where(a => a.Id == Convert.ToInt32(ddlViagem.SelectedValue) && a.aspnetusers_Id == pId).FirstOrDefault();
 
             List<vendacliente> vendaClientes = new List<vendacliente>();
-            vendaClientes = SvcVendaCliente.PesquisaViagem(viagem.Id);
+            vendaClientes = SvcVendaCliente.PesquisaViagem(viagem.Id, pId);
             int[] assento = new int[0];
             foreach (var item in vendaClientes)
             {
@@ -162,8 +163,9 @@ namespace ViagemWeb
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                string currentUserId = User.Identity.GetUserId();
                 DropDownList ddlgrid = (e.Row.FindControl("ddlCliente1") as DropDownList);
-                ddlgrid.DataSource = SvcCliente.ListarTodosClientes();
+                ddlgrid.DataSource = SvcCliente.ListarTodosClientes(currentUserId);
                 ddlgrid.DataTextField = "ClienteNome";
                 ddlgrid.DataValueField = "ClienteId";
                 ddlgrid.DataBind();
@@ -180,8 +182,28 @@ namespace ViagemWeb
             List<vendacliente> listaVendaCliente = new List<vendacliente>();
             foreach (GridViewRow item in grpVendaCliente.Rows)
             {
+
                 string currentUserId = User.Identity.GetUserId();
                 vendacliente vendaCliente = new vendacliente();
+                TextBox pago = (TextBox)item.FindControl("ValorPago");
+                if (pago.Text != "")
+                {
+                    vendaCliente.VendaValorPago = Convert.ToDecimal(pago.Text);
+                }
+                else
+                {
+                    return;
+                }
+
+                TextBox poltrona = (TextBox)item.FindControl("poltrona");
+                if (poltrona.Text != "")
+                {
+                    vendaCliente.Assento = Convert.ToInt32(poltrona.Text);
+                }
+                else
+                {
+                    return;
+                }
                 //SALVA ID DO CLIENTE
                 TextBox nome = (TextBox)item.FindControl("txtNome");
                 if (nome.Text == "")
@@ -225,25 +247,6 @@ namespace ViagemWeb
                 if(valorDesconto != "")
                 vendaCliente.VendaDesconto = Convert.ToDecimal(valorDesconto);
 
-                TextBox pago = (TextBox)item.FindControl("ValorPago");
-                if (pago.Text != "")
-                {
-                    vendaCliente.VendaValorPago = Convert.ToDecimal(pago.Text);
-                }
-                else
-                {
-                    return;
-                }
-
-                TextBox poltrona = (TextBox)item.FindControl("poltrona");
-                if(poltrona.Text != "")
-                {
-                    vendaCliente.Assento = Convert.ToInt32(poltrona.Text);
-                }
-                else
-                {
-                    return;
-                }
                 vendaCliente.Status = 0;
                 vendaCliente.aspnetusers_Id = currentUserId;
                 listaVendaCliente.Add(vendaCliente);
@@ -259,7 +262,8 @@ namespace ViagemWeb
 
         protected void ddlViagem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CarregarListaAssento();
+            string currentUserId = User.Identity.GetUserId();
+            CarregarListaAssento(currentUserId);
         }
 
         protected void voucherPDF(List<vendacliente> pVendaCliente)

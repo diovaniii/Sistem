@@ -8,7 +8,7 @@ using ViagemSeg;
 using ViagemSeg.Comuns;
 using ViagemSeg.Svc;
 using ViagemSeg.Dto;
-
+using Microsoft.AspNet.Identity;
 
 namespace ViagemWeb
 {
@@ -18,15 +18,17 @@ namespace ViagemWeb
         {
             if (!IsPostBack)
             {
+                string currentUserId = User.Identity.GetUserId();
                 carregaNome();
                 CarregaListaCliente();
-                lblNUmeroRegistro(SvcCliente.ListarTodosClientes());
+                lblNUmeroRegistro(SvcCliente.ListarTodosClientes(currentUserId));
             }
         }
 
         private void CarregaListaCliente()
         {
-            grpListaDeClientes.DataSource = SvcCliente.ListarTodosClientes();
+            string currentUserId = User.Identity.GetUserId();
+            grpListaDeClientes.DataSource = SvcCliente.ListarTodosClientes(currentUserId);
             grpListaDeClientes.DataBind();
             uppGridView.Update();
         }
@@ -80,7 +82,8 @@ namespace ViagemWeb
 
         protected void carregaNome()
         {
-            ddlNome.DataSource = SvcCliente.ListarTodosClientes();
+            string currentUserId = User.Identity.GetUserId();
+            ddlNome.DataSource = SvcCliente.ListarTodosClientes(currentUserId);
             ddlNome.DataBind();
             UpdatePanel.Update();
         }

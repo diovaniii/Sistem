@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,8 @@ namespace ViagemWeb
 
         private void CarregarListaFornecedor()
         {
-            grpListaDeFornecedor.DataSource = SvcFornecedor.ListarFornecedor();
+            string currentUserId = User.Identity.GetUserId();
+            grpListaDeFornecedor.DataSource = SvcFornecedor.ListarFornecedor(currentUserId);
             grpListaDeFornecedor.DataBind();
             uppGridViewFornecedor.Update();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace ViagemWeb
 {
     public partial class StatsViagem : System.Web.UI.Page
     {
+
         private viagem _viagem
         {
             get { return (viagem)ViewState[typeof(viagem).FullName]; }
@@ -18,9 +20,10 @@ namespace ViagemWeb
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            string currentUserId = User.Identity.GetUserId();
             if (!IsPostBack)
             {
-                carregaVeiculo();
+                carregaVeiculo(currentUserId);
                 //very first load//
                 string id = Request.QueryString["ViagemId"];
                 if (!string.IsNullOrEmpty(id))
@@ -41,9 +44,11 @@ namespace ViagemWeb
             }
         }
 
+
         protected void PorcentagemVenda(int id)
         {
-            var passagemVendida = SvcVendaCliente.PesquisaViagem(id);
+            string currentUserId = User.Identity.GetUserId();
+            var passagemVendida = SvcVendaCliente.PesquisaViagem(id, currentUserId);
             var quantidadePassagem = SvcViagem.BuscarViagem(id);
             //if (passagemVendida == null)
             //    return;
@@ -74,9 +79,9 @@ namespace ViagemWeb
 
         }
 
-        protected void carregaVeiculo()
+        protected void carregaVeiculo(string pId)
         {
-            ddlVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos();
+            ddlVeiculo.DataSource = SvcVeiculo.ListarTodosVeiculos(pId);
             ddlVeiculo.DataBind();
 
         }
@@ -105,12 +110,13 @@ namespace ViagemWeb
         decimal? totalDespesas;
         protected void CarregaResultados(int id)
         {
+            string currentUserId = User.Identity.GetUserId();
             //var esperado = SvcVendaCliente.PesquisaViagem(id);
             var esperado = SvcViagem.BuscarViagem(id);
             var assento = SvcVeiculo.BuscarVeiculo(esperado.Veiculo).Lugares;
             var soma = esperado.Valor * assento;
             txbValorTotal.Text = Convert.ToString(soma);
-            var vendas = SvcVendaCliente.PesquisaViagem(id);
+            var vendas = SvcVendaCliente.PesquisaViagem(id, currentUserId);
             foreach (var item in vendas)
             {
                 total = total + item.VendaValorPago;
