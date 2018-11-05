@@ -17,7 +17,10 @@ namespace ViagemSeg.Comuns
         {
             if (strCpfCnpj.Length <= 11)
             {
-                MaskedTextProvider mtpCpf = new MaskedTextProvider(@"000\.000\.000-00");
+                //MaskedTextProvider mtpCpf = new MaskedTextProvider(@"000\.000\.000-00");
+                //mtpCpf.Set(ZerosEsquerda(strCpfCnpj, 11));
+                //return mtpCpf.ToString();
+                MaskedTextProvider mtpCpf = new MaskedTextProvider(@"0000000000-0");
                 mtpCpf.Set(ZerosEsquerda(strCpfCnpj, 11));
                 return mtpCpf.ToString();
             }

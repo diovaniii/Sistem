@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-3">
                     <label>
-                        Cpf:
+                        Rg:
                         <br>
                         <asp:TextBox ID="txtCpf" runat="server" Class="form-control" Font-Bold="false"></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server"
@@ -237,9 +237,12 @@
         
         function mCpf(v) {
             v = v.replace(/\D/g, "");
-            v = v.replace( /(\d{3})(\d)/ , "$1.$2");
-            v = v.replace( /(\d{3})(\d)/ , "$1.$2");
-            v = v.replace(/(\d{3})(\d{1,2})$/ , "$1-$2");
+            //v=v.replace(/(\d{2})(\d{3})(\d{3})(\d{1})$/,"$1.$2.$3-$4");
+            v = v.replace(/(\d{0})(\d{1})$/, "$1-$2");
+            //v = v.replace( /(\d{3})(\d)/ , "$1.$2");
+            //v = v.replace( /(\d{2})(\d)$/ , "$1.$2");
+            
+            
             return v;
         }
         

@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-3">
                             <label>
-                                Cpf:
+                                Rg:
                                 <br>
                                 <asp:TextBox ID="txtCpf" runat="server" Class="form-control" MaxLength="14"></asp:TextBox>
                             </label>
@@ -97,7 +97,7 @@
                                     SortExpression="ClienteTelefone" />
                                 <asp:BoundField
                                     DataField="ClienteCpf"
-                                    HeaderText="Cpf"
+                                    HeaderText="Rg"
                                     SortExpression="ClienteCpf" />
                                 <asp:BoundField
                                     DataField="ClienteDataNascimento"
@@ -148,9 +148,10 @@
 
         function mCpf(v) {
             v = v.replace(/\D/g, "");
-            v = v.replace(/(\d{3})(\d)/, "$1.$2");
-            v = v.replace(/(\d{3})(\d)/, "$1.$2");
-            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            v = v.replace(/(\d{0})(\d{1})$/, "$1-$2");
+            //v = v.replace(/(\d{3})(\d)/, "$1.$2");
+            //v = v.replace(/(\d{3})(\d)/, "$1.$2");
+            //v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
             return v;
         }
 
