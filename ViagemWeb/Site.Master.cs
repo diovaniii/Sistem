@@ -56,6 +56,7 @@ namespace ViagemWeb
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
                 ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
+                lblCadastroNome.Text = "Agencia " + Context.User.Identity.Name;
             }
             else
             {

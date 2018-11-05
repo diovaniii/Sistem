@@ -25,14 +25,14 @@
                         </div>
                         <div class="col-md-3">
                             <label>
-                                Cpf:
+                                Rg:
                                 <br>
                                 <asp:TextBox ID="txtCpf" runat="server" Class="form-control" MaxLength="14"></asp:TextBox>
                             </label>
                         </div>
                         <div class="col-md-4">
                             <label>
-                                Data de nascimento:
+                                Data de Vencimento:
                                 <br>
                                 <asp:TextBox ID="txtDataNascimento" runat="server" Class="form-control" TextMode="Date"></asp:TextBox>
                             </label>
@@ -107,9 +107,9 @@
                                         <asp:LinkButton ID="LinkExluir" runat="server" CssClass="btn btn-Lista" OnCommand="Excluir" CommandArgument='<%# Eval("ContaId")%>' ToolTip="Excluir">
                                 <i aria-hidden="true" class="glyphicon glyphicon-trash"></i>
                                         </asp:LinkButton>
-                                        <asp:LinkButton ID="LinkEditar" runat="server" CssClass="btn btn-Lista" OnCommand="Editar" CommandArgument='<%# Eval("ContaId")%>' ToolTip="Editar">
+                                        <%--<asp:LinkButton ID="LinkEditar" runat="server" CssClass="btn btn-Lista" OnCommand="Editar" CommandArgument='<%# Eval("ContaId")%>' ToolTip="Editar">
                                 <i aria-hidden="true" class="glyphicon glyphicon-edit"></i>
-                                        </asp:LinkButton>
+                                        </asp:LinkButton>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

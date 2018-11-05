@@ -25,7 +25,7 @@ namespace ViagemWeb
             if (!string.IsNullOrEmpty(id))
             {
 
-                //MontarCadastroVeiculo(Convert.ToInt32(id));
+                MontarVendaFretamento(Convert.ToInt32(id));
             }
             else
             {
@@ -74,7 +74,19 @@ namespace ViagemWeb
 
         protected void limpar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CadastroFretamento.aspx");
+            Response.Redirect("VendaFretamento.aspx");
+        }
+
+        protected void MontarVendaFretamento(int id)
+        {
+            _Fretamento = SvcFretamento.BuscarFretamento(id);
+            txtCliente.Text = _Fretamento.Cliente;
+            txtNome.Text = _Fretamento.Nome;
+            txtValor.Text = Convert.ToString( _Fretamento.Valor);
+            txtKm.Text = Convert.ToString( _Fretamento.Km);
+            txtDescricao.Text = _Fretamento.Descricao;
+
+
         }
     }
 }

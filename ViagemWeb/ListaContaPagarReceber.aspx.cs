@@ -40,9 +40,10 @@ namespace ViagemWeb
         }
         protected void Excluir(object sender, CommandEventArgs e)
         {
-            //var valor = Convert.ToInt32(e.CommandArgument);
-            //SvcCliente.Excluir(valor);
-            //CarregaListaCliente();
+            var valor = Convert.ToInt32(e.CommandArgument);
+            SvcContaPagarReceber.Excluir(valor);
+            ListaConta();
+
         }
 
         protected void ListaConta()

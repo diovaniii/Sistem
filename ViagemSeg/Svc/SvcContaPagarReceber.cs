@@ -79,5 +79,22 @@ namespace ViagemSeg.Svc
                 return Mapeador.ListaConta(contas1.ToList());
             }
         }
+
+        public static int Excluir(int id)
+        {
+            contas conta = new contas();
+            using (var db = new bancoviagemEntities())
+            {
+                var y = db.contas.Find(id);
+                y.Status = 1;
+                conta = y;
+            }
+            using (var db = new bancoviagemEntities())
+            {
+                db.Entry(conta).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return id;
+        }
     }
 }

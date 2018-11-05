@@ -138,8 +138,12 @@
             <footer>
                 <div>
                     <sis:WebUserControl1 runat="server" ID="WebUserControl1" CssClass="bus" />
+                    
                 </div>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <div>
+                    <h3><asp:Label ID="lblCadastroNome" runat="server"></asp:Label></h3>
+                </div>
+                <p>&copy; <%: DateTime.Now.Year %> - DPX Application</p>
             </footer>
         </div>
     </form>

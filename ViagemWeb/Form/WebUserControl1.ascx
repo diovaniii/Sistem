@@ -241,4 +241,3 @@ figure {
 </svg>
 </figure>
 
-<h3>Eliane viagens e turismo</h3>

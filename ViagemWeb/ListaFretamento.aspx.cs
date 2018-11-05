@@ -32,7 +32,7 @@ namespace ViagemWeb
         protected void Editar(object sender, CommandEventArgs e)
         {
             var valor = Convert.ToInt32(e.CommandArgument);
-            var script = string.Format("window.open('CadastroFretamento.aspx?VeiculoId={0}')", valor);
+            var script = string.Format("window.open('VendaFretamento.aspx?FretamentoId={0}')", valor);
             ScriptManager.RegisterStartupScript(this, GetType(), Guid.NewGuid().ToString(), script, true);
         }
         protected void Excluir(object sender, CommandEventArgs e)

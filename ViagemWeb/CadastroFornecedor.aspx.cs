@@ -26,7 +26,7 @@ namespace ViagemWeb
             if (!string.IsNullOrEmpty(id))
             {
 
-                //MontarCadastroVeiculo(Convert.ToInt32(id));
+                MontarCadastroFornecedor(Convert.ToInt32(id));
             }
             else
             {
@@ -78,6 +78,15 @@ namespace ViagemWeb
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "AlertBox", "alert('Cadastrado com sucesso');", true);
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "AlertBox", "alert('Cadastrado com sucesso');", false);
             }
+            
+        }
+
+        protected void MontarCadastroFornecedor(int id)
+        {
+            _Fornecedor = SvcFornecedor.BuscarFornecedores(id);
+            txtNome.Text = _Fornecedor.Nome;
+            txtDescricao.Text = _Fornecedor.Servico;
+            txtTelefone.Text = _Fornecedor.Telefone;
             
         }
     }
