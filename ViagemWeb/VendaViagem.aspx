@@ -4,11 +4,11 @@
     <link href="../Content/css/select2.min.css" rel="stylesheet" />
     <script src="../Scripts/select2.min.js"></script>
     <div class="row">
-        
-            <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
 
-                    <panel runat="server">
+        <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+
+                <panel runat="server">
                 <p />
                 <fieldset>
                     <legend>Venda de Viagem</legend>
@@ -28,24 +28,24 @@
                             </label>
                         </div>
             </panel>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-            <div class="col-md-3">
-                <label>
-                    Quantidade:
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <div class="col-md-3">
+            <label>
+                Quantidade:
                         <br>
-                    <input id="Quant" type='text' class="form-control" autocomplete="off" />
-                </label>
-            </div>
+                <input id="Quant" type='text' class="form-control" autocomplete="off" />
+            </label>
+        </div>
 
 
-            <div class="col-md-3">
-                <label>
+        <div class="col-md-3">
+            <label>
 
-                    <br>
-                    <asp:Button runat="server" ID="salvarQuantidade" Text="Ok" class="btn" OnClick="salvarQuantidade_Click" />
-                </label>
-            </div>
+                <br>
+                <asp:Button runat="server" ID="salvarQuantidade" Text="Ok" class="btn" OnClick="salvarQuantidade_Click" />
+            </label>
+        </div>
 
         </fieldset>
         <asp:UpdatePanel runat="server" ID="uppPanel" UpdateMode="Conditional">

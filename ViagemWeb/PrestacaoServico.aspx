@@ -15,6 +15,13 @@
                             </label>
                         </div>
                 <div class="col-md-3">
+                            <label>
+                                Viagem:
+                        <br>
+                                <asp:DropDownList ID="ddlViagem" runat="server" DataTextField="ViagemNome" DataValueField="ViagemId" Class="form-control js-example-basic-single" />
+                            </label>
+                        </div>
+                <div class="col-md-3">
                     <label>
                         Serviço:
                         <br>

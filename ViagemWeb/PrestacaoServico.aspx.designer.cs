@@ -10,8 +10,7 @@
 namespace ViagemWeb {
     
     
-    public partial class PrestacaoServico
-    {
+    public partial class PrestacaoServico {
         
         /// <summary>
         /// UpdatePanel control.
@@ -30,6 +29,15 @@ namespace ViagemWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFornecedor;
+        
+        /// <summary>
+        /// ddlViagem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlViagem;
         
         /// <summary>
         /// txtServico control.

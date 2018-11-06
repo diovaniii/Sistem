@@ -29,6 +29,8 @@ namespace ViagemSeg
         public System.DateTime DataNascimento { get; set; }
         public int Status { get; set; }
         public string aspnetusers_Id { get; set; }
+        public int endereco_Id { get; set; }
+        public string endereco_aspnetusers_Id { get; set; }
     
         public virtual aspnetusers aspnetusers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

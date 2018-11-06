@@ -20,6 +20,7 @@ namespace ViagemSeg
         public decimal Valor { get; set; }
         public int Status { get; set; }
         public string aspnetusers_Id { get; set; }
+        public int IdViagem { get; set; }
     
         public virtual aspnetusers aspnetusers { get; set; }
     }
