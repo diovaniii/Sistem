@@ -22,20 +22,27 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string currentUserId = User.Identity.GetUserId();
-            carregaNome(currentUserId);
-            CarregarListaViagem(currentUserId);
-            //very first load//
-            string id = Request.QueryString["ServicoId"];
-            if (!string.IsNullOrEmpty(id))
+            if (!IsPostBack)
             {
+                string currentUserId = User.Identity.GetUserId();
+                carregaNome(currentUserId);
+                CarregarListaViagem(currentUserId);
+                //very first load//
+                string id = Request.QueryString["ServicoId"];
+                if (!string.IsNullOrEmpty(id))
+                {
 
-                MontarPrestacaoServico(Convert.ToInt32(id));
+                    MontarPrestacaoServico(Convert.ToInt32(id));
+                }
+                else
+                {
+
+                    _Servico = new pestacaoservico();
+                }
             }
             else
             {
-
-                _Servico = new pestacaoservico();
+                //not first load//
             }
         }
 
@@ -59,14 +66,16 @@ namespace ViagemWeb
             }
             else
             {
+
                 _Servico.IdFornecedor = Convert.ToInt32(ddlFornecedor.SelectedValue);
                 _Servico.Descricao = txtServico.Text;
-                _Servico.Valor = Convert.ToInt32(txtValor.Text);
+                _Servico.Valor = Convert.ToDecimal(txtValor.Text);
                 _Servico.Status = 0;
                 _Servico.IdViagem = Convert.ToInt32(ddlViagem.SelectedItem.Value);
                 string currentUserId = User.Identity.GetUserId();
                 _Servico.aspnetusers_Id = currentUserId;
-
+                _Servico.aspnetusers = null;
+                
 
                 SvcServico.AlteraSalvaServico(_Servico);
                 Response.Redirect("ListaServico.aspx");

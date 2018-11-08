@@ -22,6 +22,7 @@ namespace ViagemSeg.Svc
             }
         }
 
+
         public static fornecedor AlteraSalvaFornecedor(fornecedor fornecedor)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())

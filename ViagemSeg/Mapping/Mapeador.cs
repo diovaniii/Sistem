@@ -128,6 +128,7 @@ namespace ViagemSeg.Mapping
                 servico.ServicoIdFornecedor = Convert.ToInt32( item.IdFornecedor);
                 servico.Servico = item.Descricao;
                 servico.ServicoValor = Convert.ToDecimal( item.Valor);
+                servico.IdViagem = item.IdViagem;
                 Se.Add(servico);
           
             }

@@ -12,5 +12,7 @@ namespace ViagemSeg.Dto
         public int ServicoIdFornecedor { get; set; }
         public string Servico { get; set; }
         public decimal ServicoValor { get; set; }
+        public int IdViagem { get; set; }
+        public int Status { get; set; }
     }
 }

@@ -21,17 +21,24 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //very first load//
-            string id = Request.QueryString["FornecedorId"];
-            if (!string.IsNullOrEmpty(id))
+            if (!IsPostBack)
             {
+                //very first load//
+                string id = Request.QueryString["FornecedorId"];
+                if (!string.IsNullOrEmpty(id))
+                {
 
-                MontarCadastroFornecedor(Convert.ToInt32(id));
+                    MontarCadastroFornecedor(Convert.ToInt32(id));
+                }
+                else
+                {
+
+                    _Fornecedor = new fornecedor();
+                }
             }
             else
             {
-
-                _Fornecedor = new fornecedor();
+                //not first load//
             }
         }
 

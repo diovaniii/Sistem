@@ -39,7 +39,7 @@ namespace ViagemWeb
         protected void Excluir(object sender, CommandEventArgs e)
         {
             var valor = Convert.ToInt32(e.CommandArgument);
-            SvcVeiculo.Excluir(valor);
+            SvcServico.Excluir(valor);
             CarregarListaServico();
         }
     }

@@ -21,6 +21,15 @@ namespace ViagemWeb
         {
             if (!IsPostBack)
             {
+                string currentUserId = User.Identity.GetUserId();
+                var mensagem = SvcVeiculo.ListarTodosVeiculos(currentUserId);
+                if (mensagem.Count() == 0)
+                {
+                    
+                    Response.Redirect("CadastroVeiculo.aspx");
+                    Response.Write("<script>alert('Inserted successfully!')</script>");
+                }
+
                 carregaVeiculo();
                 //very first load//
                 string id = Request.QueryString["ViagemId"];

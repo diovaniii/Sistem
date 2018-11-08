@@ -22,24 +22,23 @@ namespace ViagemSeg.Svc
             }
         }
 
-        public static pestacaoservico AlteraSalvaServico(pestacaoservico servico)
+        public static pestacaoservico AlteraSalvaServico(pestacaoservico pestacaoservico)
         {
             using (var ContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var existeServico = db.pestacaoservico.Find(servico.Id);
-
+                    var existeServico = db.pestacaoservico.Find(pestacaoservico.Id);
                     using (var db = new bancoviagemEntities())
                     {
 
                         if (existeServico == null)
                         {
-                            db.Entry(servico).State = EntityState.Added;
+                            db.Entry(pestacaoservico).State = EntityState.Added;
                         }
                         else
                         {
-                            db.Entry(servico).State = EntityState.Modified;
+                            db.Entry(pestacaoservico).State = EntityState.Modified;
                         }
                         db.SaveChanges();
                     }
@@ -53,7 +52,7 @@ namespace ViagemSeg.Svc
                     throw ex;
                 }
             }
-            return servico;
+            return pestacaoservico;
         }
 
         public static int Excluir(int id)

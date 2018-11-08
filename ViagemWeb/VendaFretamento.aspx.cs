@@ -20,17 +20,24 @@ namespace ViagemWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //very first load//
-            string id = Request.QueryString["FretamentoId"];
-            if (!string.IsNullOrEmpty(id))
+            if (!IsPostBack)
             {
+                //very first load//
+                string id = Request.QueryString["FretamentoId"];
+                if (!string.IsNullOrEmpty(id))
+                {
 
-                MontarVendaFretamento(Convert.ToInt32(id));
+                    MontarVendaFretamento(Convert.ToInt32(id));
+                }
+                else
+                {
+
+                    _Fretamento = new fretamento();
+                }
             }
             else
             {
-
-                _Fretamento = new fretamento();
+                //not first load//
             }
         }
 
@@ -57,7 +64,7 @@ namespace ViagemWeb
             {
                 _Fretamento.Nome = txtNome.Text;
                 _Fretamento.Km = Convert.ToDecimal(txtKm.Text);
-                _Fretamento.Valor = Convert.ToInt32(txtValor.Text);
+                _Fretamento.Valor = Convert.ToDecimal(txtValor.Text);
                 _Fretamento.Descricao = txtDescricao.Text;
                 _Fretamento.Cliente = txtCliente.Text;
                 _Fretamento.Status = 0;

@@ -78,8 +78,6 @@
           <Property Name="DataNascimento" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="aspnetusers_Id" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="endereco_Id" Type="int" Nullable="false" />
-          <Property Name="endereco_aspnetusers_Id" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="contas">
           <Key>
@@ -201,15 +199,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="varchar" MaxLength="50" />
-          <Property Name="Local" Type="varchar" MaxLength="50" />
-          <Property Name="DataInicio" Type="date" />
-          <Property Name="DataFim" Type="date" />
-          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Estado" Type="varchar" MaxLength="50" />
-          <Property Name="Descricao" Type="longtext" />
-          <Property Name="Status" Type="int" />
-          <Property Name="Veiculo" Type="int" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Local" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataInicio" Type="date" Nullable="false" />
+          <Property Name="DataFim" Type="date" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descricao" Type="longtext" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Veiculo" Type="int" Nullable="false" />
           <Property Name="aspnetusers_Id" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <Association Name="fk_cliente_aspnetusers1">
@@ -614,8 +612,6 @@
           <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="aspnetusers_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="endereco_Id" Type="Int32" Nullable="false" />
-          <Property Name="endereco_aspnetusers_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="aspnetusers" Relationship="Self.fk_cliente_aspnetusers1" FromRole="cliente" ToRole="aspnetusers" />
           <NavigationProperty Name="endereco" Relationship="Self.fk_endereco_cliente1" FromRole="cliente" ToRole="endereco" />
           <NavigationProperty Name="vendacliente" Relationship="Self.fk_vendacliente_cliente1" FromRole="cliente" ToRole="vendacliente" />
@@ -752,15 +748,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DataInicio" Type="DateTime" />
-          <Property Name="DataFim" Type="DateTime" />
-          <Property Name="Valor" Type="Decimal" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Descricao" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="Veiculo" Type="Int32" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" />
+          <Property Name="DataFim" Type="DateTime" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Veiculo" Type="Int32" Nullable="false" />
           <Property Name="aspnetusers_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="aspnetusers" Relationship="Self.fk_viagem_aspnetusers1" FromRole="viagem" ToRole="aspnetusers" />
           <NavigationProperty Name="vendacliente" Relationship="Self.fk_vendacliente_viagem1" FromRole="viagem" ToRole="vendacliente" />
@@ -1123,8 +1119,6 @@
                 <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="aspnetusers_Id" ColumnName="aspnetusers_Id" />
-                <ScalarProperty Name="endereco_Id" ColumnName="endereco_Id" />
-                <ScalarProperty Name="endereco_aspnetusers_Id" ColumnName="endereco_aspnetusers_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
